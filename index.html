@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/d3.v3.min.js"></script>
+		<script type="text/javascript" src="/js/topojson.v1.min.js"></script>
 		<style>
 
 		.background {
@@ -25,11 +27,16 @@
 		  stroke-linejoin: round;
 		}
 
+		#info_window {
+			border:2px solid #000;
+			width:10em;
+			height:8em;
+		}
+
 		</style>
 	</head>
 	<body>
-		<script type="text/javascript" src="/js/d3.v3.min.js"></script>
-		<script type="text/javascript" src="/js/topojson.v1.min.js"></script>
+		
 		<script>
 
 		var width = 960,
@@ -98,6 +105,8 @@
 		  svg.transition()
 		      .duration(750)
 		      .call(zoom.translate(translate).scale(scale).event);
+
+		  showInfo(d);
 		}
 
 		function reset() {
@@ -120,6 +129,14 @@
 		  if (d3.event.defaultPrevented) d3.event.stopPropagation();
 		}
 
+		function showInfo(d) {
+			console.info(d);
+			$("#info_window").html(d.id);
+
+		}
+
 		</script>
+
+		<div id="info_window"></div>
 	</body>
 </html>
